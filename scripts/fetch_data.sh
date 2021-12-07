@@ -1,0 +1,2 @@
+curl --progress-bar https://data.sfgov.org/api/views/tkzw-k3nq/rows.csv?accessType=DOWNLOAD > trees.csv
+curl --progress-bar https://data.sfgov.org/api/geospatial/rnbg-2qxw?method=export&format=GeoJSON > data/elevation.geojson

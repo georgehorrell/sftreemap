@@ -1,4 +1,5 @@
 import random
+from re import match as re_match
 
 def histogram(data, nbins, min_val=None, max_val=None, keyFn=lambda x: x):
     hist_vals = [0]*(nbins+1)
@@ -15,14 +16,22 @@ def histogram(data, nbins, min_val=None, max_val=None, keyFn=lambda x: x):
     bin_lower_bounds = [min_val + i*(max_val - min_val)/len(hist_vals) for i in range(len(hist_vals))]
     return bins, bin_lower_bounds
 
+def is_number_regex(s):
+    """ Returns True is string is a number. """
+    if re_match("^\d+?\.\d+?$", s) is None:
+        return s.isdigit()
+    return True
 
 def main():
-    with open("raw.csv") as f:
+    with open("data/trees.csv") as f:
         data = []
         for line in f:
-            x, y = line.split(",")
+            fields = line.split(",")
+            x, y = fields[13:15]
+            if not (is_number_regex(x) and is_number_regex(y)): continue
             x = float(x)
             y = float(y)
+            if x == 0 or y == 0: continue
             data.append((x,y))
 
         bins, _ = histogram(data, 10, keyFn=lambda x: x[0])
