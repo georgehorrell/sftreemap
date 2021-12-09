@@ -130,3 +130,6 @@ dist
 
 # project data
 data/
+
+# golang
+elevate_go

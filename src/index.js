@@ -1,10 +1,10 @@
 import { App } from "./App";
 import debounce from "debounce";
+import positions from "./trees.elevation.normalized.json";
 
 let config = {
   // instances per thingy
   nInstances: 2000,
-  useCube: false,
   scale: 1
 };
 // 27,000 60fps
@@ -23,13 +23,12 @@ let switchEle = document.getElementById("switch");
 
 let restart = debounce(myApp.restart, 400);
 
-countEle.innerText = config.nInstances * 2;
+countEle.innerText = config.nInstances;
 let addInstances = count => {
   config.nInstances += count;
   config.nInstances = Math.max(500, config.nInstances);
-  countEle.innerText = config.nInstances * 2;
-  let scale = 1 - Math.min(1, (config.nInstances - 500) / 50000) * 0.8;
-  config.scale = scale;
+  config.nInstances = Math.min(positions.length / 3, config.nInstances);
+  countEle.innerText = config.nInstances;
   restart();
 };
 let handleLess = () => {
@@ -45,17 +44,6 @@ let handleMore = () => {
 let handleEvenMore = () => {
   addInstances(20000);
 };
-
-let handleSwitch = () => {
-  config.useCube = !config.useCube;
-  if (config.useCube) {
-    switchEle.innerText = "Use Spheres";
-  } else {
-    switchEle.innerText = "Use Cubes";
-  }
-  restart();
-};
-switchEle.addEventListener("click", handleSwitch);
 
 less.addEventListener("click", handleLess);
 more.addEventListener("click", handleMore);

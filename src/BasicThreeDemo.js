@@ -18,7 +18,7 @@ export class BasicThreeDemo {
     container.append(this.renderer.domElement);
 
     this.camera = new THREE.PerspectiveCamera(
-      45,
+      90,
       container.offsetWidth / container.offsetHeight,
       0.1,
       10000
