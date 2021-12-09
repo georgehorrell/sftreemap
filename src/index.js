@@ -7,9 +7,7 @@ let config = {
   nInstances: 2000,
   scale: 1
 };
-// 27,000 60fps
-// 58,000 30fps
-// also consider that the spheres have a lot fo vertices
+
 const container = document.getElementById("app");
 const myApp = new App(container, config);
 myApp.init();

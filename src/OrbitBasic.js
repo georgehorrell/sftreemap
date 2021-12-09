@@ -2,7 +2,7 @@ import "./styles.css";
 import * as THREE from "three";
 import Stats from "stats.js";
 
-export class BasicThreeDemo {
+export class OrbitBasic {
   constructor(container) {
     this.container = container;
     this.renderer = new THREE.WebGLRenderer({

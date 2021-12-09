@@ -26,8 +26,8 @@ void main(){
 }
 `;
 
-let baseCube = new THREE.ConeGeometry(0.03, 0.03, 3);
-export class Spheres extends THREE.Mesh {
+let baseCone = new THREE.ConeBufferGeometry(0.03, 0.08, 3);
+export class Cones extends THREE.Mesh {
   constructor(config, positions, colors) {
     super();
     this.config = config;
@@ -44,7 +44,7 @@ export class Spheres extends THREE.Mesh {
     this.material = material;
   }
   init() {
-    let instancedGeometry = new THREE.InstancedBufferGeometry().copy(baseCube);
+    let instancedGeometry = new THREE.InstancedBufferGeometry().copy(baseCone);
 
     this.uniforms.uScale.value = this.config.scale;
     let instanceCount = this.config.nInstances;
@@ -66,8 +66,6 @@ export class Spheres extends THREE.Mesh {
       "aColor",
       new THREE.InstancedBufferAttribute(new Float32Array(aColor), 3, false)
     );
-
-    // Ignore this. Just to fix the lag of rendering all the spheres in the same position
 
     this.geometry = instancedGeometry;
   }

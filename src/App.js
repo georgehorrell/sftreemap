@@ -1,11 +1,11 @@
 import "./styles.css";
 import * as THREE from "three";
-import { BasicThreeDemo } from "./BasicThreeDemo";
-import { Spheres } from "./map";
+import { OrbitBasic } from "./OrbitBasic";
+import { Cones } from "./map";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import positions from "./trees.elevation.normalized.json";
 
-export class App extends BasicThreeDemo {
+export class App extends OrbitBasic {
   constructor(container, config) {
     super(container);
     this.config = config;
@@ -14,7 +14,7 @@ export class App extends BasicThreeDemo {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
     this.text = new Text(this);
-    this.topSpheres = new Spheres(config, positions, [
+    this.cones = new Cones(config, positions, [
       new THREE.Color("#005A04"),
       new THREE.Color("#CCFFBB"),
       new THREE.Color("#3A5F0B"),
@@ -25,16 +25,16 @@ export class App extends BasicThreeDemo {
     this.restart = this.restart.bind(this);
   }
   restart() {
-    this.topSpheres.clean();
-    this.topSpheres.init();
+    this.cones.clean();
+    this.cones.init();
   }
   dispose() {
     this.disposed = true;
     this.scene.dispose();
   }
   init() {
-    this.topSpheres.init();
-    this.scene.add(this.topSpheres);
+    this.cones.init();
+    this.scene.add(this.cones);
 
     this.tick();
   }
