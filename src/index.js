@@ -1,10 +1,11 @@
 import { App } from "./App";
 import debounce from "debounce";
-import positions from "./trees.elevation.normalized.json";
+import positions from "./trees.elevation.normalized.short.json";
 
 let config = {
   // instances per thingy
   nInstances: 2000,
+  positions: positions,
   scale: 1
 };
 
