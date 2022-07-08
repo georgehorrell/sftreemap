@@ -1,6 +1,6 @@
 import { App } from "./App";
 import debounce from "debounce";
-import positions from "./trees.elevation.normalized.short.json";
+import positions from "./trees.elevation.normalized.short.js";
 
 let config = {
   // instances per thingy
